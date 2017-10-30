@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import Post from './Post'
+import PostDetail from './PostDetail'
 
 const post = {
   "id": "8xf0y6ziyjabvozdd253nd",
@@ -17,7 +17,7 @@ const post = {
 class App extends Component {
   render() {
     return (
-    <Post post={post}/>
+    <PostDetail post={post}/>
     );
   }
 }
