@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../bootstrap.css'
 import '../App.css';
 import PostDetail from './PostDetail'
 

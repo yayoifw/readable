@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import Comment from './Comment'
+import CommentList from './CommentList'
+import Uparrow from 'react-icons/lib/go/triangle-up'
+import Dnarrow from 'react-icons/lib/go/triangle-down'
 
 const style = {
   margin: 0,
@@ -12,7 +14,8 @@ class PostDetail extends Component {
   timestampToDate(timestamp) {
     console.log(timestamp);
     const d = new Date(timestamp);
-    return (d.getDate() +'/'+ d.getMonth() +'/'+ d.getFullYear())
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return d.toLocaleDateString('en-US', options);
   }
   render () {
     //console.log("Props", this.props)
@@ -20,15 +23,21 @@ class PostDetail extends Component {
     return (
       <div style={style}>
         <div className="header">
-          <div>
-            <span>By {post.author}, </span>
-            <span>{this.timestampToDate(post.timestamp)}</span>
+          <h2 className="post-title">{post.title}</h2>
+          <div className="post-meta">
+            <p>{this.timestampToDate(post.timestamp)} by {post.author} </p>
+            <p>Vote score: {post.voteScore} <a><Uparrow /></a><a><Dnarrow /></a></p>
           </div>
-          <h2>{post.title}</h2>
         </div>
-        <div className="content">{post.body}
-        <Comment />
+        <div className="content">
+          {post.body}
         </div>
+        <div className="button-group">
+          <button type="button" className="btn btn-info">Edit</button>
+          <button type="button" className="btn btn-secondary">Delete</button>
+        </div>
+        <hr />
+        <CommentList/>
       </div>
     )
   }
