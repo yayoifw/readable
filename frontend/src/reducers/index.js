@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import postReducer from './postReducer'
-import commentReducer from './commentReducer'
+import post from './postReducer'
+import posts from './postsReducer'
+import comments from './commentReducer'
 
 export default combineReducers({
-    postReducer,
-    commentReducer
+    post,
+    posts,
+    comments
 })

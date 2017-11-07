@@ -1,11 +1,13 @@
 import {
+  COMMENTS_FETCH,
   COMMENT_ADD,
   COMMENT_EDIT,
   COMMENT_DELETE
 } from "../actions/index"
 
-function commentReducer(state = { }, action) {
+function comments(state = [], action) {
   switch (action.type) {
+    case COMMENTS_FETCH:
     case COMMENT_ADD:
     case COMMENT_EDIT:
     case COMMENT_DELETE:
@@ -14,4 +16,4 @@ function commentReducer(state = { }, action) {
   }
 }
 
-export default commentReducer
+export default comments

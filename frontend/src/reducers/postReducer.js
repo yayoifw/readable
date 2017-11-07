@@ -16,32 +16,15 @@ const initialPosts = [{
   "commentCount": 2
 }]
 
-function postReducer(state = { posts: initialPosts }, action) {
+function post(state = {}, action) {
   switch (action.type) {
     case POST_VOTE:
-      return state
-      break;
     case POST_EDIT:
-      return {
-        ...state,
-        posts: state.posts.map((post) => {
-          if (post.id === action.post.id)
-            return action.post
-          else
-            return post
-        })
-      }
-      break;
     case POST_DELETE:
-      return {
-        ...state,
-        posts: state.posts.filter(post => (post.id !== action.post.id))
-      }
-      break;
+      return action.data
     default:
       return state
   }
-
 }
 
-export default postReducer
+export default post
