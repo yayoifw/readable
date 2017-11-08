@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../bootstrap.css'
 import '../App.css';
+import * as api from '../api'
 //import PostDetail from './PostDetail'
-
+import { fetchPostsAsync } from "../actions/post";
 
 
 class App extends Component {
@@ -13,14 +14,13 @@ class App extends Component {
   componentDidMount() {
     const { store } = this.props
 
-    store.subscribe(() => {
-      this.setState(() => ({
-        posts: store.getState()
-      }))
-    })
+    fetchPostsAsync()
   }
 
   render() {
+    api.getPosts().then(data => { console.log(data) })
+    api.getPost("8xf0y6ziyjabvozdd253nd").then(data => { console.log(data) })
+    api.deletePost("8xf0y6ziyjabvozdd253nd").then(data => { console.log("deleted", data)})
     console.log('my state', this.state)
     return (<div>Test</div>)
     // return (

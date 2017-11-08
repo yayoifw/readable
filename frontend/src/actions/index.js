@@ -1,5 +1,6 @@
 export const POSTS_FETCH = 'POSTS_FETCH'
 
+export const POST_FETCH = 'POST_FETCH'
 export const POST_VOTE = 'POST_VOTE'
 export const POST_EDIT = 'POST_EDIT'
 export const POST_DELETE = 'POST_DELETE'
