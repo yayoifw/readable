@@ -34,6 +34,16 @@ export const updatePost = (post) =>
     body: JSON.stringify({ post: post.title, body: post.body })
   }).then(res => res.json())
 
+export const votePost = (postId, voteType) =>
+  fetch(`${api}/posts/${postId}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option: voteType })
+  }).then(res => res.json())
+
 export const search = (query, maxResults) =>
   fetch(`${api}/search`, {
     method: 'POST',
