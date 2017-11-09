@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { votePost } from '../actions/post'
+import { votePost, deletePost, editPost } from '../actions/post'
 import { VOTE_UP, VOTE_DOWN } from "../actions/index";
 
 import CommentList from './CommentList'
@@ -8,35 +8,13 @@ import LikeHand from '../assets/like.svg'
 import DislikeHand from '../assets/dislike.svg'
 
 
-const initialPost = {
-  "id": "8xf0y6ziyjabvozdd253nd",
-  "timestamp": 1467166872634,
-  "title": "Udacity is the best place to learn React",
-  "body": "Everyone says so after all.",
-  "author": "thingtwo",
-  "category": "react",
-  "voteScore": 6,
-  "deleted": false,
-  "commentCount": 2
-}
-
 class PostDetail extends Component {
-  state = {
-    post: initialPost
-  }
 
   timestampToDate(timestamp) {
     console.log(timestamp);
     const d = new Date(timestamp);
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     return d.toLocaleDateString('en-US', options);
-  }
-
-  voteUp(event) {
-
-  }
-  voteDown(event) {
-
   }
 
   renderComments() {
@@ -49,7 +27,7 @@ class PostDetail extends Component {
 
   render () {
     //console.log("Props", this.props)
-    const post = this.state.post
+    const post = this.props.post
     return (
       <div className="post-detail">
         <div className="header">
@@ -72,7 +50,7 @@ class PostDetail extends Component {
         </div>
         <div className="button-group">
           <button type="button" className="btn btn-info">Edit</button>
-          <button type="button" className="btn btn-secondary">Delete</button>
+          <button onClick={() => {this.props.onPostDelete(post.id)}} type="button" className="btn btn-secondary">Delete</button>
         </div>
         {this.renderComments()}
       </div>
@@ -87,7 +65,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = () => ({
-  onPostVote: votePost
+  onPostVote: votePost,
+  onPostDelete: deletePost,
+  onPostEdit: editPost
 })
 
 

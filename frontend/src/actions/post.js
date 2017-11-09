@@ -47,8 +47,12 @@ const deletePostAction = (data) => ({
   data
 })
 
-
-const editPost = (post) => ({
+export const editPost = (post) => dispatch => {
+  api.updatePost(post).then(data => {
+    dispatch(editPostAction(data))
+  })
+}
+const editPostAction = (data) => ({
   type: POST_EDIT,
-  post
+  data
 })
