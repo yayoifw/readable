@@ -1,7 +1,8 @@
 import {
   POST_VOTE,
   POSTS_FETCH,
-  POST_DELETE
+  POST_DELETE,
+  POST_EDIT
 } from "../actions/index";
 
 function posts(state = [], action) {
@@ -15,7 +16,9 @@ function posts(state = [], action) {
     case POST_DELETE:
       // action.data is a post {} with deleted=true
       return state.filter(aPost => (aPost.id !== action.data.id))
-
+    case POST_EDIT:
+      // action.data is a post {}
+      return state
     default:
       return state
   }

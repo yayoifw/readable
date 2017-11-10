@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { fetchPostsAsync } from "../actions/post";
 import PostDetail from "./PostDetail";
 
-class Posts extends Component {
+class PostList extends Component {
   componentDidMount() {
-    const { getPosts } = this.props
-    getPosts();
+    const { getPosts, category } = this.props
+    getPosts(category);
   }
 
   render () {
@@ -16,7 +16,7 @@ class Posts extends Component {
       <ul className="post-page">
         {posts.map(aPost =>
           (<li key={aPost.id}>
-              <PostDetail post={aPost} showComments="false"/>
+              <PostDetail post={aPost} showDetails={false}/>
           </li>))}
       </ul>
     )
@@ -31,4 +31,4 @@ const mapDispatchToProps = {
   getPosts: fetchPostsAsync
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+export default connect(mapStateToProps, mapDispatchToProps)(PostList)

@@ -2,9 +2,9 @@ import {POST_VOTE, POST_EDIT, POST_DELETE, POST_FETCH, POSTS_FETCH} from './inde
 import * as api from '../api'
 
 
-export function fetchPostsAsync() {
+export function fetchPostsAsync(category = null) {
   return dispatch => {
-    api.getPosts().then(data => {
+    api.getPosts(category).then(data => {
       dispatch(fetchPostsAction(data))
     })
   }

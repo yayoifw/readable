@@ -12,9 +12,11 @@ const headers = {
   'Authorization': 'Basic '+btoa('username:password'),
 }
 
-export const getPosts = () =>
-  fetch(`${api}/posts`, { headers })
+export const getPosts = (category = null) => {
+  const url = (category) ? `${api}/${category}/posts` : `${api}/posts`
+  return fetch(url, {headers})
     .then(res => res.json())
+}
 
 export const getPost = (postId) =>
   fetch(`${api}/posts/${postId}`, { headers })
