@@ -11,7 +11,7 @@ import DislikeHand from '../assets/dislike.svg'
 class PostDetail extends Component {
 
   timestampToDate(timestamp) {
-    console.log(timestamp);
+    //console.log(timestamp);
     const d = new Date(timestamp);
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     return d.toLocaleDateString('en-US', options);
@@ -26,7 +26,7 @@ class PostDetail extends Component {
   }
 
   render () {
-    //console.log("Props", this.props)
+    console.log("Post", this.props.post)
     const post = this.props.post
     return (
       <div className="post-detail">
@@ -58,17 +58,11 @@ class PostDetail extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    post: state.post
-  }
-}
-
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = {
   onPostVote: votePost,
   onPostDelete: deletePost,
   onPostEdit: editPost
-})
+}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
+export default connect(undefined, mapDispatchToProps)(PostDetail);
