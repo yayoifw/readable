@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { fetchPostsAsync } from "../actions/post";
 import PostDetail from "./PostDetail";
 
 class PostList extends Component {
-  componentDidMount() {
-    const { getPosts, category } = this.props
-    getPosts(category);
-  }
-
   render () {
-    console.log("posts", this.props.posts)
+    console.log("PostList posts", this.props.posts)
     const { posts } = this.props
+
+    if (posts.length === 0) return (<p>No Post Found</p>)
+    else
     return (
       <ul className="post-page">
         {posts.map(aPost =>
@@ -23,12 +19,4 @@ class PostList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  posts: state.posts
-})
-
-const mapDispatchToProps = {
-  getPosts: fetchPostsAsync
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostList)
+export default PostList

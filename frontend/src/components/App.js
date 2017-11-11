@@ -8,11 +8,13 @@ import ByCategoryScreen from '../screens/ByCategoryScreen'
 import * as api from '../api'
 
 import { fetchCategories } from "../actions/categories";
+import { fetchPostsAsync } from "../actions/post";
 
 
 class App extends Component {
   componentWillMount() {
     this.props.getCategories();
+    this.props.getPosts();
   }
 
   render() {
@@ -32,7 +34,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = {
-  getCategories: fetchCategories
+  getCategories: fetchCategories,
+  getPosts: fetchPostsAsync
 }
 
 export default connect(null, mapDispatchToProps)(App);

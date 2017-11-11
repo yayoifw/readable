@@ -5,13 +5,16 @@ import { connect } from 'react-redux'
 const CategoryList = (props) => {
   const { categories } = props
   return (
-    <ul>
-      {categories.map((aCat) => (
-        <li key={aCat.path}>
-          <Link to={`/category/${aCat.path}`}>{aCat.name}</Link>
-        </li>
-      ))}
-    </ul>
+    <div className="post-sidebar">
+      <h2>Categories</h2>
+      <ul className="post-categories">
+        {categories.map((aCat) => (
+          <li key={aCat.path}>
+            <Link to={`/category/${aCat.path}`}>{aCat.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
