@@ -87,7 +87,7 @@ class PostDetail extends Component {
     const { post, showDetails } = this.props
     return (
       <div className="post-detail">
-        <div className="header">
+        <div className="post-header">
           <h2 className="post-title">{post.title}</h2>
           <div className="post-meta">
             <p>{this.timestampToDate(post.timestamp)} by {post.author} </p>
@@ -97,7 +97,7 @@ class PostDetail extends Component {
             </p>
           </div>
         </div>
-        <div className="content">
+        <div className="post-content">
           {post.body}
         </div>
         {this.renderPostControlButtons(showDetails)}

@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import Page from '../components/Page'
 import PostList from '../components/PostList'
+import { Link } from 'react-router-dom'
 
 class HomeScreen extends Component {
   render() {
     return (
-      <div className="screen">
-          <h1>All Posts</h1>
-          <PostList/>
-      </div>
+      <Page title="All Posts">
+        <Link to="/posts/newpost" className="btn btn-info">Add Post</Link>
+        <PostList/>
+      </Page>
     )
   }
 }

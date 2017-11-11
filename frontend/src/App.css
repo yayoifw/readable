@@ -1,52 +1,78 @@
+.header {
+  background-color: #2aabd2;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  padding: 0.2rem 1rem;
+}
+
+.container {
+  max-width: 60rem;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
 .post-page {
-  margin: 1rem 2rem;
+  margin: 1rem 0;
   padding: 0;
   list-style: none;
 }
+
 .post-page li {
   margin-bottom: 1rem;
 }
+
 .post-detail {
   margin: 0;
   padding: 20px;
   background: white;
   border: 1px solid #d5d8df;
 }
+
 .post-title {
   margin-bottom: 0.25rem;
 }
+
 .post-meta {
   margin: 0;
   margin-bottom: 1.25rem;
   color: #999;
 }
+
 .post-meta p {
   margin: 0;
 }
+
 .button-group button {
   margin-top: 0.8rem;
   margin-bottom: 0.8rem;
   margin-right: 0.8rem;
 }
+
 .icon-vote-container {
   display: inline-block;
-  width:20px;
+  width: 20px;
   height: 20px;
   margin-left: 0.3rem;
   position: relative;
 }
+
 .icon-vote-container:hover {
   border: 1px solid green;
 }
+
 .icon-vote-container:active {
   background: green;
 }
+
 .icon-vote {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 20px;
 }
+
 .icon-vote-down {
   position: absolute;
   bottom: -3px;
