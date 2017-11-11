@@ -25,7 +25,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Route exact path="/" component={HomeScreen} />
-          <Route exact path="/:category" component={ByCategoryScreen} />
+          <Route exact path="/category/:category" component={ByCategoryScreen} />
         </div>
       </BrowserRouter>)
   }
