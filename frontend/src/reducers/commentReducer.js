@@ -8,6 +8,7 @@ import {
 function comments(state = [], action) {
   switch (action.type) {
     case COMMENTS_FETCH:
+      return action.data
     case COMMENT_ADD:
     case COMMENT_EDIT:
     case COMMENT_DELETE:

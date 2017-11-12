@@ -1,4 +1,5 @@
-import { COMMENT_ADD, COMMENT_EDIT, COMMENT_DELETE } from '../index'
+import { COMMENT_ADD, COMMENT_EDIT, COMMENT_DELETE, COMMENTS_FETCH } from './index'
+import * as api from '../api'
 
 const addComment = (comment) => {
   return {
@@ -19,4 +20,13 @@ const deleteComment = (id) => {
     type: COMMENT_DELETE,
     id
   }
+}
+
+export const fetchPostCommentsAsync = (postid) => dispatch => {
+  api.getPostComments(postid).then(data => {
+    dispatch({
+      type: COMMENTS_FETCH,
+      data
+    })
+  })
 }

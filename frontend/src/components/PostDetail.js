@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { votePost, deletePost, editPost } from '../actions/post'
+import { votePost, deletePost, editPost, fetchPostAsync } from '../actions/post'
+import { fetchPostCommentsAsync } from "../actions/comment"
 import { VOTE_UP, VOTE_DOWN } from "../actions/index";
+import { timestampToDate } from "../utils/utils";
+import { Link } from 'react-router-dom'
 
 import Modal from 'react-modal'
 import CommentList from './CommentList'
@@ -11,18 +14,22 @@ import DislikeHand from '../assets/dislike.svg'
 
 class PostDetail extends Component {
   state = {
-    postEditModalOpen: true
+    postEditModalOpen: false
   }
 
-  timestampToDate(timestamp) {
-    //console.log(timestamp);
-    const d = new Date(timestamp);
-    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return d.toLocaleDateString('en-US', options);
+  componentDidMount() {
+    const { getPost, getComments } = this.props
+    const postid = this.props.match.params.postid
+    getPost(postid)
+    getComments(postid)
   }
 
-  renderPostEditModal(show) {
-    if (show) {
+  onPostDeleteClick(postid) {
+    this.props.onPostDelete(postid)
+    this.props.history.push("/")
+  }
+
+  renderPostEditModal() {
       return (
         <Modal
           className="modal"
@@ -37,16 +44,11 @@ class PostDetail extends Component {
           </div>
         </Modal>
       )
-    }
-    else {
-      return null
-    }
   }
 
-  renderVoteButtons(show) {
+  renderVoteButtons() {
     const { post, onPostVote } = this.props
-    if (show) {
-      return (
+    return (
         <span>
         <a className="icon-vote-container" onClick={() => {onPostVote(post.id, VOTE_UP) }}>
           <img src={LikeHand} className="icon-vote" alt="vote down post icon"/>
@@ -55,64 +57,66 @@ class PostDetail extends Component {
           <img src={DislikeHand} className="icon-vote-down" alt="vote up post icon"/>
         </a>
         </span>)
-    } else {
-      return null
-    }
   }
 
-  renderPostControlButtons(show) {
-    const { post, onPostDelete } = this.props
-    if (show) {
-      return (
+  renderPostControlButtons() {
+    const { post } = this.props
+    return (
         <div className="button-group">
           <button type="button" className="btn btn-info">Edit</button>
-          <button onClick={() => {onPostDelete(post.id)}} type="button" className="btn btn-secondary">Delete</button>
+          <button onClick={() => {this.onPostDeleteClick(post.id)}} type="button" className="btn btn-secondary">Delete</button>
         </div>
       )
-    } else {
-      return null
-    }
-  }
-
-  renderComments(show) {
-    if (show) {
-      return <CommentList/>
-    } else {
-      return null
-    }
   }
 
   render () {
-    console.log("Post", this.props.post)
-    const { post, showDetails } = this.props
-    return (
-      <div className="post-detail">
-        <div className="post-header">
-          <h2 className="post-title">{post.title}</h2>
-          <div className="post-meta">
-            <p>{this.timestampToDate(post.timestamp)} by {post.author} </p>
-            <p>Category: {post.category}</p>
-            <p>Vote score: {post.voteScore}
-              {this.renderVoteButtons(showDetails)}
-            </p>
+    const { post, comments } = this.props
+    if (!post) {
+      return (
+        <div>
+          <h2>Post not found</h2>
+          <Link to="/" >Back to All Posts</Link>
+        </div>
+      )
+    } else {
+      return (
+        <div className="post-detail">
+          <div className="post-header">
+            <h2 className="post-title">{post.title}</h2>
+            <div className="post-meta">
+              <p>{timestampToDate(post.timestamp)} by {post.author} </p>
+              <p>Category: {post.category}</p>
+              <p>Vote score: {post.voteScore}
+                {this.renderVoteButtons()}
+              </p>
+            </div>
           </div>
+          <div className="post-content">
+            {post.body}
+          </div>
+          {this.renderPostControlButtons()}
+          <CommentList comments={comments}/>
+          {this.renderPostEditModal()}
         </div>
-        <div className="post-content">
-          {post.body}
-        </div>
-        {this.renderPostControlButtons(showDetails)}
-        {this.renderComments(showDetails)}
-        {this.renderPostEditModal(showDetails)}
-      </div>
-    )
+      )
+    }
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    post: state.post,
+    comments: state.comments
   }
 }
 
 const mapDispatchToProps = {
   onPostVote: votePost,
   onPostDelete: deletePost,
-  onPostEdit: editPost
+  onPostEdit: editPost,
+  getPost: fetchPostAsync,
+  getComments: fetchPostCommentsAsync,
 }
 
 
-export default connect(undefined, mapDispatchToProps)(PostDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

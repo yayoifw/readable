@@ -18,7 +18,11 @@ const fetchPostsAction = (data) => ({
 export function fetchPostAsync(postId) {
   return dispatch => {
     api.getPost(postId).then(data => {
-      dispatch(fetchPostAction(data))
+      if (data.error) {
+        dispatch(fetchPostAction(null))
+      } else {
+        dispatch(fetchPostAction(data))
+      }
     })
   }
 }
@@ -56,3 +60,4 @@ const editPostAction = (data) => ({
   type: POST_EDIT,
   data
 })
+

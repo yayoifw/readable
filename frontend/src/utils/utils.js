@@ -11,3 +11,10 @@ export function sortPostsByTimestamp(posts, order) {
   else
     return  posts.sort((a,b) => (b.timestamp - a.timestamp))
 }
+
+export function timestampToDate(timestamp) {
+  //console.log(timestamp);
+  const d = new Date(timestamp);
+  var options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return d.toLocaleDateString('en-US', options);
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PostDetail from "./PostDetail";
+import PostSummary from "./PostSummary";
 
 class PostList extends Component {
   render () {
@@ -12,7 +12,7 @@ class PostList extends Component {
       <ul className="post-page">
         {posts.map(aPost =>
           (<li key={aPost.id}>
-              <PostDetail post={aPost} showDetails={false}/>
+              <PostSummary post={aPost} />
           </li>))}
       </ul>
     )
