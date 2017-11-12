@@ -18,11 +18,7 @@ const fetchPostsAction = (data) => ({
 export function fetchPostAsync(postId) {
   return dispatch => {
     api.getPost(postId).then(data => {
-      if (data.error) {
-        dispatch(fetchPostAction(null))
-      } else {
-        dispatch(fetchPostAction(data))
-      }
+      dispatch(fetchPostAction(data))
     })
   }
 }

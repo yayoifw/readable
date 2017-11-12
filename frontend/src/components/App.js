@@ -5,7 +5,7 @@ import '../App.css';
 import { BrowserRouter, Route } from 'react-router-dom'
 import HomeScreen from '../screens/HomeScreen'
 import ByCategoryScreen from '../screens/ByCategoryScreen'
-import PostDetail from '../components/PostDetail'
+import PostDetailScreen from '../screens/PostDetailScreen'
 import * as api from '../api'
 
 import { fetchCategories } from "../actions/categories";
@@ -29,7 +29,7 @@ class App extends Component {
         <div>
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/category/:category" component={ByCategoryScreen} />
-          <Route exact path="/post/:postid" component={PostDetail} />
+          <Route exact path="/post/:postid" component={PostDetailScreen} />
         </div>
       </BrowserRouter>)
   }

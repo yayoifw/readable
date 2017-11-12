@@ -19,14 +19,13 @@ class PostDetail extends Component {
 
   componentDidMount() {
     const { getPost, getComments } = this.props
-    const postid = this.props.match.params.postid
-    getPost(postid)
+    const postid = this.props.post.id
     getComments(postid)
   }
 
   onPostDeleteClick(postid) {
     this.props.onPostDelete(postid)
-    this.props.history.push("/")
+    // this.props.history.push("/") How do I go back to "/" ?
   }
 
   renderPostEditModal() {
@@ -71,35 +70,26 @@ class PostDetail extends Component {
 
   render () {
     const { post, comments } = this.props
-    if (!post) {
-      return (
-        <div>
-          <h2>Post not found</h2>
-          <Link to="/" >Back to All Posts</Link>
-        </div>
-      )
-    } else {
-      return (
-        <div className="post-detail">
-          <div className="post-header">
-            <h2 className="post-title">{post.title}</h2>
-            <div className="post-meta">
-              <p>{timestampToDate(post.timestamp)} by {post.author} </p>
-              <p>Category: {post.category}</p>
-              <p>Vote score: {post.voteScore}
-                {this.renderVoteButtons()}
-              </p>
-            </div>
+    return (
+      <div className="post-detail">
+        <div className="post-header">
+          <h2 className="post-title">{post.title}</h2>
+          <div className="post-meta">
+            <p>{timestampToDate(post.timestamp)} by {post.author} </p>
+            <p>Category: {post.category}</p>
+            <p>Vote score: {post.voteScore}
+              {this.renderVoteButtons()}
+            </p>
           </div>
-          <div className="post-content">
-            {post.body}
-          </div>
-          {this.renderPostControlButtons()}
-          <CommentList comments={comments}/>
-          {this.renderPostEditModal()}
         </div>
-      )
-    }
+        <div className="post-content">
+          {post.body}
+        </div>
+        {this.renderPostControlButtons()}
+        <CommentList comments={comments}/>
+        {this.renderPostEditModal()}
+      </div>
+    )
   }
 }
 
