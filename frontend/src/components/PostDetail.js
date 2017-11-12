@@ -2,15 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { votePost, deletePost, editPost, fetchPostAsync } from '../actions/post'
 import { fetchPostCommentsAsync } from "../actions/comment"
-import { VOTE_UP, VOTE_DOWN } from "../actions/index";
-import { timestampToDate } from "../utils/utils";
-import { Link } from 'react-router-dom'
+import { timestampToDate, renderVoteButtons } from "../utils/utils";
+import { withRouter } from 'react-router-dom'
 
 import Modal from 'react-modal'
 import CommentList from './CommentList'
-import LikeHand from '../assets/like.svg'
-import DislikeHand from '../assets/dislike.svg'
-
 
 class PostDetail extends Component {
   state = {
@@ -25,7 +21,7 @@ class PostDetail extends Component {
 
   onPostDeleteClick(postid) {
     this.props.onPostDelete(postid)
-    // this.props.history.push("/") How do I go back to "/" ?
+    this.props.history.push("/")
   }
 
   renderPostEditModal() {
@@ -44,20 +40,7 @@ class PostDetail extends Component {
         </Modal>
       )
   }
-
-  renderVoteButtons() {
-    const { post, onPostVote } = this.props
-    return (
-        <span>
-        <a className="icon-vote-container" onClick={() => {onPostVote(post.id, VOTE_UP) }}>
-          <img src={LikeHand} className="icon-vote" alt="vote down post icon"/>
-        </a>
-        <a className="icon-vote-container" onClick={() => {onPostVote(post.id, VOTE_DOWN) }}>
-          <img src={DislikeHand} className="icon-vote-down" alt="vote up post icon"/>
-        </a>
-        </span>)
-  }
-
+  
   renderPostControlButtons() {
     const { post } = this.props
     return (
@@ -69,7 +52,7 @@ class PostDetail extends Component {
   }
 
   render () {
-    const { post, comments } = this.props
+    const { post, comments, onPostVote } = this.props
     return (
       <div className="post-detail">
         <div className="post-header">
@@ -78,7 +61,7 @@ class PostDetail extends Component {
             <p>{timestampToDate(post.timestamp)} by {post.author} </p>
             <p>Category: {post.category}</p>
             <p>Vote score: {post.voteScore}
-              {this.renderVoteButtons()}
+            {renderVoteButtons(post.id, onPostVote)}
             </p>
           </div>
         </div>
@@ -109,4 +92,4 @@ const mapDispatchToProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetail));
