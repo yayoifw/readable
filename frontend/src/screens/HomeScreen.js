@@ -5,45 +5,54 @@ import Page from '../components/Page'
 import PostList from '../components/PostList'
 import CategoryList from '../components/CategoryList'
 import PostContainer from '../components/PostContainer'
+import {sortPostsByTimestamp, sortPostsByVoteScore} from "../utils/utils";
+import PostsVoteScoreSortControl from '../components/PostsSortControl'
+
+const SORT_BY_TIMESTAMP = 'timestamp'
+const SORT_BY_VOTESCORE = 'voteScore'
 
 class HomeScreen extends Component {
   state = {
-    sortBy: 'voteScore',
+    sortBy: SORT_BY_VOTESCORE,
     order: 'desc'
   }
 
-  onSortByVoteScore(order) {
+  onVoteScoreSortClicked(event) {
+    // toggle sort order
+    const newOrder = (this.state.order === 'asc') ? 'desc' : 'asc'
     this.setState({
-      sortBy: 'voteScore',
-      order
+      sortBy: SORT_BY_VOTESCORE,
+      order: newOrder
     })
   }
 
-  sortPostsByVoteScore(posts, order) {
-    if (order === 'asc')
-      return posts.sort((a,b) => (a.voteScore - b.voteScore))
-    else
-      return  posts.sort((a,b) => (b.voteScore - a.voteScore))
-  }
-
-  renderPostsSortControl() {
-    if (this.state.order === 'asc') {
-      return (<a className="btn btn-info" onClick={() => {
-        this.onSortByVoteScore('desc')
-      }}>Sort by vote (desc)</a>)
-    } else {
-      return (<a className="btn btn-info" onClick={() => {this.onSortByVoteScore('asc')}}>Sort by vote (asc)</a>)
-    }
+  onTimestampSortClicked(event) {
+    // toggle sort order
+    const newOrder = (this.state.order === 'asc') ? 'desc' : 'asc'
+    this.setState({
+      sortBy: SORT_BY_TIMESTAMP,
+      order: newOrder
+    })
   }
 
   render() {
     let posts = this.props.posts
-    posts = this.sortPostsByVoteScore(posts, this.state.order)
+    let voteScoreOrder = 'desc'
+    let timestampOrder = 'desc'
+    if (this.state.sortBy === SORT_BY_VOTESCORE) {
+      posts = sortPostsByVoteScore(posts, this.state.order)
+      voteScoreOrder = this.state.order
+    } else if (this.state.sortBy === SORT_BY_TIMESTAMP) {
+      posts = sortPostsByTimestamp(posts, this.state.order)
+      timestampOrder = this.state.order
+    }
+
     return (
       <Page title="All Posts">
         <PostContainer>
           <Link to="/posts/add" className="btn btn-info">Add Post</Link>
-          {this.renderPostsSortControl()}
+          <PostsVoteScoreSortControl callback={e => this.onVoteScoreSortClicked(e)} title="Sort by vote score" order={voteScoreOrder}/>
+          <PostsVoteScoreSortControl callback={e => this.onTimestampSortClicked(e)} title="Sort by timestamp" order={timestampOrder}/>
           <PostList posts={posts}/>
         </PostContainer>
         <CategoryList/>
