@@ -1,4 +1,4 @@
-import {POST_VOTE, POST_EDIT, POST_DELETE, POST_FETCH, POSTS_FETCH} from './index'
+import {POST_VOTE, POST_EDIT, POST_ADD, POST_DELETE, POST_FETCH, POSTS_FETCH} from './index'
 import * as api from '../api'
 
 
@@ -57,3 +57,12 @@ const editPostAction = (data) => ({
   data
 })
 
+export const addPost = (post) => dispatch => {
+  api.addPost(post).then(data => {
+    dispatch(addPostAction(data))
+  })
+}
+const addPostAction = (data) => ({
+  type: POST_ADD,
+  data
+})

@@ -6,10 +6,12 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import HomeScreen from '../screens/HomeScreen'
 import ByCategoryScreen from '../screens/ByCategoryScreen'
 import PostDetailScreen from '../screens/PostDetailScreen'
+import PostForm from '../components/PostForm'
 import * as api from '../api'
 
 import { fetchCategories } from "../actions/categories";
 import { fetchPostsAsync } from "../actions/post";
+import AddEditPostScreen from "../screens/AddEditPostScreen";
 
 
 class App extends Component {
@@ -30,6 +32,7 @@ class App extends Component {
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/category/:category" component={ByCategoryScreen} />
           <Route exact path="/post/:postid" component={PostDetailScreen} />
+          <Route exact path="/add/post" component={AddEditPostScreen} />
         </div>
       </BrowserRouter>)
   }

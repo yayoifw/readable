@@ -14,7 +14,7 @@ class PostDetail extends Component {
   }
 
   componentDidMount() {
-    const { getPost, getComments } = this.props
+    const { getComments } = this.props
     const postid = this.props.post.id
     getComments(postid)
   }
@@ -40,7 +40,7 @@ class PostDetail extends Component {
         </Modal>
       )
   }
-  
+
   renderPostControlButtons() {
     const { post } = this.props
     return (

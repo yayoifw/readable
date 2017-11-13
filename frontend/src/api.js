@@ -54,3 +54,18 @@ export const getPostComments = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
 
+export const addPost = (post) =>
+  fetch(`${api}/posts`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: post.id,
+      timestamp: post.timestamp,
+      title: post.title,
+      body: post.body,
+      author: post.author,
+      category: post.category })
+  }).then(res => res.json())

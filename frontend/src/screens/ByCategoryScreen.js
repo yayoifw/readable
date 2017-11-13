@@ -51,7 +51,7 @@ class ByCategoryScreen extends Component {
     return (
         <Page title={`Category: ${categoryName}`}>
           <PostContainer>
-            <Link to="/posts/add" className="btn btn-info">Add Post</Link>
+            <Link to="/add/post" className="btn btn-info">Add Post</Link>
             <PostsVoteScoreSortControl callback={e => this.onVoteScoreSortClicked(e)} title="Sort by vote score" order={voteScoreOrder}/>
             <PostsVoteScoreSortControl callback={e => this.onTimestampSortClicked(e)} title="Sort by timestamp" order={timestampOrder}/>
             <PostList posts={posts}/>
