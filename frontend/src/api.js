@@ -69,3 +69,48 @@ export const addPost = (post) =>
       author: post.author,
       category: post.category })
   }).then(res => res.json())
+
+export const addComment = (comment) =>
+  fetch(`${api}/comments`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: comment.id,
+      timestamp: comment.timestamp,
+      body: comment.body,
+      author: comment.author,
+      parentId: comment.parentId })
+  }).then(res => res.json())
+
+
+export const editComment = (comment) =>
+  fetch(`${api}/comments/${comment.id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      timestamp: comment.timestamp,
+      body: comment.body
+    })
+  }).then(res => res.json())
+
+export const deleteComment = (id) =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'DELETE', headers
+  }).then(res => res.json())
+
+
+export const voteComment = (id, voteType) =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option: voteType })
+  }).then(res => res.json())

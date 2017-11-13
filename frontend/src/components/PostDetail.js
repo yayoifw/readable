@@ -5,7 +5,6 @@ import { fetchPostCommentsAsync } from "../actions/comment"
 import { timestampToDate, renderVoteButtons } from "../utils/utils";
 import { Link, withRouter } from 'react-router-dom'
 
-import Modal from 'react-modal'
 import CommentList from './CommentList'
 
 class PostDetail extends Component {
@@ -24,22 +23,22 @@ class PostDetail extends Component {
     this.props.history.push("/")
   }
 
-  renderPostEditModal() {
-      return (
-        <Modal
-          className="modal"
-          isOpen={this.state.postEditModalOpen}
-          onRequestClose={this.closeModal}
-          contentLabel="Modal"
-        >
-          <div>
-            <input type='text' placeholder='Title' ref={(input) => this.titleInput = input}/>
-            <input type='text' placeholder='Body' ref={(input) => this.bodyInput = input}/>
-            <button>Save</button>
-          </div>
-        </Modal>
-      )
-  }
+  // renderPostEditModal() {
+  //     return (
+  //       <Modal
+  //         className="modal"
+  //         isOpen={this.state.postEditModalOpen}
+  //         onRequestClose={this.closeModal}
+  //         contentLabel="Modal"
+  //       >
+  //         <div>
+  //           <input type='text' placeholder='Title' ref={(input) => this.titleInput = input}/>
+  //           <input type='text' placeholder='Body' ref={(input) => this.bodyInput = input}/>
+  //           <button>Save</button>
+  //         </div>
+  //       </Modal>
+  //     )
+  // }
 
   renderPostControlButtons() {
     const { post } = this.props
@@ -70,7 +69,6 @@ class PostDetail extends Component {
         </div>
         {this.renderPostControlButtons()}
         <CommentList comments={comments}/>
-        {this.renderPostEditModal()}
       </div>
     )
   }

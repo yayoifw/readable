@@ -1,14 +1,34 @@
 import React, { Component } from 'react'
+import Modal from 'react-modal'
 
-import comments from './comments.json'
 
 class CommentList extends Component {
+
+  renderCommentEditModal() {
+      return (
+        <Modal
+          className="modal"
+          isOpen={this.state.postEditModalOpen}
+          onRequestClose={this.closeModal}
+          contentLabel="Modal"
+        >
+          <div>
+            <input type='text' placeholder='Title' ref={(input) => this.titleInput = input}/>
+            <input type='text' placeholder='Body' ref={(input) => this.bodyInput = input}/>
+            <button>Save</button>
+          </div>
+        </Modal>
+      )
+  }
+  renderCommentAddButton() {
+    return (<button className="btn btn-info">Add Comment</button>)
+  }
+
   render() {
-    console.log('comments', comments)
     const { comments } = this.props
 
     if ((!comments) || (comments.length === 0)) {
-      return null
+      return this.renderCommentAddButton()
     }
 
     return (
@@ -24,7 +44,8 @@ class CommentList extends Component {
             </li>
           ))}
         </ol>
-        <button>Add</button>
+        {this.renderCommentAddButton()}
+        {this.renderCommentEditModal()}
       </div>
     )
   }

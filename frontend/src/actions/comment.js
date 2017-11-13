@@ -1,25 +1,31 @@
 import { COMMENT_ADD, COMMENT_EDIT, COMMENT_DELETE, COMMENTS_FETCH } from './index'
 import * as api from '../api'
 
-const addComment = (comment) => {
-  return {
-    type: COMMENT_ADD,
-    comment
-  }
+export const addComment = (comment) => dispatch => {
+  api.addComment(comment).then(data => {
+    dispatch({
+      type: COMMENT_ADD,
+      data
+    })
+  })
 }
 
-const editComment = (comment) => {
-  return {
-    type: COMMENT_EDIT,
-    comment
-  }
+export const editComment = (comment) => dispatch => {
+  api.editComment(comment).then(data => {
+    dispatch({
+      type: COMMENT_EDIT,
+      data
+    })
+  })
 }
 
-const deleteComment = (id) => {
-  return {
-    type: COMMENT_DELETE,
-    id
-  }
+export const deleteComment = (id) => dispatch => {
+  api.deleteComment(id).then(data => {
+    dispatch({
+      type: COMMENT_DELETE,
+      data
+    })
+  })
 }
 
 export const fetchPostCommentsAsync = (postid) => dispatch => {
