@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { votePost, deletePost, editPost, fetchPostAsync } from '../actions/post'
 import { fetchPostCommentsAsync } from "../actions/comment"
 import { timestampToDate, renderVoteButtons } from "../utils/utils";
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import Modal from 'react-modal'
 import CommentList from './CommentList'
@@ -45,8 +45,8 @@ class PostDetail extends Component {
     const { post } = this.props
     return (
         <div className="button-group">
-          <button type="button" className="btn btn-info">Edit</button>
-          <button onClick={() => {this.onPostDeleteClick(post.id)}} type="button" className="btn btn-secondary">Delete</button>
+          <Link to={`/edit/post/${post.id}`} className="btn btn-info">Edit</Link>
+          <button onClick={() => {this.onPostDeleteClick(post.id)}} type="button" className="btn btn-secondary post-btn">Delete</button>
         </div>
       )
   }

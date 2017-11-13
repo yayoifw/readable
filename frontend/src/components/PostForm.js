@@ -1,24 +1,30 @@
 import React, { Component } from 'react'
-import { addPost } from "../actions/post"
+import { addPost, editPost } from "../actions/post"
 import { connect } from 'react-redux'
 import uuidv1 from 'uuid/v1'
 import { withRouter } from 'react-router-dom'
 
 class PostForm extends Component {
   state = {
+    id: uuidv1(),
     title: '',
     body: '',
     author: '',
     category: '',
-    formErrors: {}
+    formErrors: {},
+    isNew: true
   }
 
   componentWillMount() {
     let { post } = this.props
     if (post && post.id) {
       this.setState({
-        title: post.title,
-        body: post.body
+        id:       post.id,
+        title:    post.title,
+        body:     post.body,
+        author:   post.author,
+        category: post.category,
+        isNew: false
       })
     }
   }
@@ -81,15 +87,20 @@ class PostForm extends Component {
 
     // Create post
     let post = {
+      id:       this.state.id,
       title:    this.state.title,
       body:     this.state.body,
       author:   this.state.author,
       category: this.state.category,
     }
-    post.id = uuidv1()
     post.timestamp = new Date().getTime()
     if (!this.state.category) post.category = this.props.categories[0].name
-    this.props.addPost(post)
+
+    if (this.state.isNew) {
+      this.props.addPost(post)
+    } else {
+      this.props.editPost(post)
+    }
     this.props.history.push("/")
   }
 
@@ -98,6 +109,7 @@ class PostForm extends Component {
     this.props.history.push("/")
   }
 
+
   render() {
     const { title, body, author, category, formErrors } = this.state
     const { categories } = this.props
@@ -105,16 +117,23 @@ class PostForm extends Component {
       <form>
         <div className="form-group">
           <label htmlFor="postTitle">Title {(formErrors.title) && (<span className="form-error"> - {formErrors.title}</span>)}</label>
-          <input type="text" className="form-control" id="postTitle" placeholder="Enter Title" value={title} onChange={(e) => this.updateTitle(e.target.value)} />
+          <input type="text" className="form-control" id="postTitle"
+                 placeholder="Enter Title" value={title} onChange={(e) => this.updateTitle(e.target.value)}
+                 disabled={!this.state.isNew}
+          />
         </div>
         <div className="form-group">
           <label htmlFor="postAuthor">Author {(formErrors.author) && (<span className="form-error"> - {formErrors.author}</span>)}</label>
-          <input type="text" className="form-control" id="postAuthor" placeholder="Enter Author" value={author} onChange={(e) => this.updateAuthor(e.target.value)} />
+          <input type="text" className="form-control" id="postAuthor"
+                 placeholder="Enter Author" value={author} onChange={(e) => this.updateAuthor(e.target.value)}
+                 disabled={!this.state.isNew}
+          />
         </div>
         <div className="form-group">
           <label htmlFor="categorySelect">Category</label>
-          <select id="categorySelect" className="form-control" onChange={(e) => this.updateCategory(e.target.value)}
-                  value={category}>
+          <select id="categorySelect" className="form-control"
+                  onChange={(e) => this.updateCategory(e.target.value)}
+                  value={category} disabled={!this.state.isNew}>
             {categories.map(aCat => (<option key={aCat.name}>{aCat.name}</option>))}
           </select>
         </div>
@@ -134,7 +153,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  addPost
+  addPost,
+  editPost
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostForm))

@@ -19,7 +19,7 @@ function posts(state = [], action) {
       return state.filter(aPost => (aPost.id !== action.data.id))
     case POST_EDIT:
       // action.data is a post {}
-      return state
+      return state.map(aPost => ((aPost.id === action.data.id) ? action.data : aPost))
     case POST_ADD:
       // do not state.push(action.data), need to return a new array
       return [...state, action.data]

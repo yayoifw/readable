@@ -15,7 +15,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="495">
-              <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+              <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="47" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -23,21 +23,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddEditPostScreen.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AddEditPostScreen.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/screens/AddEditPostScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostDetail.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/PostDetail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+            <state relative-caret-position="645">
+              <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -58,7 +48,7 @@
       <file leaf-file-name="post.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/actions/post.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
+            <state relative-caret-position="687">
               <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding>
                 <element signature="e#0#92#0" expanded="true" />
@@ -92,8 +82,8 @@
       <file leaf-file-name="postsReducer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/reducers/postsReducer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="67" lean-forward="false" selection-start-line="23" selection-start-column="67" selection-end-line="23" selection-end-column="67" />
+            <state relative-caret-position="315">
+              <caret line="21" column="86" lean-forward="false" selection-start-line="21" selection-start-column="86" selection-end-line="21" selection-end-column="86" />
               <folding>
                 <element signature="e#0#102#0" expanded="true" />
               </folding>
@@ -101,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostForm.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PostForm.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/PostForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1875">
-              <caret line="125" column="103" lean-forward="false" selection-start-line="125" selection-start-column="103" selection-end-line="125" selection-end-column="103" />
+            <state relative-caret-position="249">
+              <caret line="121" column="45" lean-forward="false" selection-start-line="121" selection-start-column="45" selection-end-line="121" selection-end-column="45" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -197,14 +187,14 @@
         <option value="$PROJECT_DIR$/src/components/PostSummary.js" />
         <option value="$PROJECT_DIR$/src/api.js" />
         <option value="$PROJECT_DIR$/src/actions/index.js" />
-        <option value="$PROJECT_DIR$/src/components/PostDetail.js" />
         <option value="$PROJECT_DIR$/src/screens/HomeScreen.js" />
-        <option value="$PROJECT_DIR$/src/reducers/postsReducer.js" />
         <option value="$PROJECT_DIR$/src/actions/post.js" />
         <option value="$PROJECT_DIR$/src/screens/ByCategoryScreen.js" />
         <option value="$PROJECT_DIR$/src/components/App.js" />
-        <option value="$PROJECT_DIR$/src/components/PostForm.js" />
+        <option value="$PROJECT_DIR$/src/components/PostDetail.js" />
         <option value="$PROJECT_DIR$/src/screens/AddEditPostScreen.js" />
+        <option value="$PROJECT_DIR$/src/reducers/postsReducer.js" />
+        <option value="$PROJECT_DIR$/src/components/PostForm.js" />
       </list>
     </option>
   </component>
@@ -423,12 +413,12 @@
       <workItem from="1510278768944" duration="8951000" />
       <workItem from="1510357366871" duration="5804000" />
       <workItem from="1510414725614" duration="19048000" />
-      <workItem from="1510510353335" duration="13656000" />
+      <workItem from="1510510353335" duration="15950000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89284000" />
+    <option name="totallyTimeSpent" value="91578000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="22" y="23" width="1418" height="873" extended-state="0" />
@@ -813,16 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/PostDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/PostList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -841,26 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/postsReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="67" lean-forward="false" selection-start-line="23" selection-start-column="67" selection-end-line="23" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/post.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#92#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/ByCategoryScreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -872,17 +832,17 @@
     <entry file="file://$PROJECT_DIR$/src/components/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
-          <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+          <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="47" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/PostForm.js">
+    <entry file="file://$PROJECT_DIR$/src/components/PostDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1875">
-          <caret line="125" column="103" lean-forward="false" selection-start-line="125" selection-start-column="103" selection-end-line="125" selection-end-column="103" />
+        <state relative-caret-position="451">
+          <caret line="48" column="119" lean-forward="false" selection-start-line="48" selection-start-column="119" selection-end-line="48" selection-end-column="119" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
@@ -891,9 +851,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/AddEditPostScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="645">
+          <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/post.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="687">
+          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/postsReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="86" lean-forward="false" selection-start-line="21" selection-start-column="86" selection-end-line="21" selection-end-column="86" />
+          <folding>
+            <element signature="e#0#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PostForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="121" column="45" lean-forward="false" selection-start-line="121" selection-start-column="45" selection-end-line="121" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

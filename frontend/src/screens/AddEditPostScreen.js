@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { addPost } from '../actions/post'
+import { fetchPostAsync } from '../actions/post'
 import { connect } from 'react-redux'
 import Page from '../components/Page'
 import PostForm from '../components/PostForm'
 
 
 class AddEditPostScreen extends Component {
+  state = {
+    isNew: (!this.props.match.params.postid) ? true : false
+  }
+
   componentDidMount() {
     const { getPost } = this.props
     const postid = this.props.match.params.postid
@@ -20,16 +24,21 @@ class AddEditPostScreen extends Component {
   }
 
   render() {
+    const post = (this.state.isNew) ? null : this.props.post
     return (
       <Page title="Post Form">
-        <PostForm />
+        <PostForm post={post}/>
       </Page>
     )
   }
 }
 
+const mapStateToProps = (state) => ({
+  post: state.post
+})
+
 const mapDispatchToProps = {
-  onAddPost: addPost
+  getPost: fetchPostAsync
 }
 
-export default connect(null, mapDispatchToProps)(AddEditPostScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AddEditPostScreen);
