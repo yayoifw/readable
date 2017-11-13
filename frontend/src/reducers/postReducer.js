@@ -6,10 +6,16 @@ import {
 
 function post(state = null, action) {
   switch (action.type) {
+    case POST_EDIT:
     case POST_DELETE:
       return null
     case POST_VOTE:
-    case POST_EDIT:
+      // Only update the matching post
+      if (state.id === action.data.id) {
+        return action.data
+      } else {
+        return state
+      }
     case POST_FETCH:
       return action.data
     default:

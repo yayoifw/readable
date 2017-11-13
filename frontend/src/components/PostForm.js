@@ -30,7 +30,6 @@ class PostForm extends Component {
   }
 
   updateTitle(text) {
-    text = text.trim()
     this.setState({
       title: text,
     })
@@ -43,7 +42,6 @@ class PostForm extends Component {
   }
 
   updateAuthor(text) {
-    text = text.trim()
     this.setState({
       author: text,
     })
@@ -75,9 +73,9 @@ class PostForm extends Component {
     e.preventDefault()
 
     let validationErrors = {}
-    this.validateField('title', this.state.title, validationErrors)
-    this.validateField('body',  this.state.body, validationErrors)
-    this.validateField('author',  this.state.author, validationErrors)
+    this.validateField('title',   this.state.title.trim(), validationErrors)
+    this.validateField('body',    this.state.body.trim(), validationErrors)
+    this.validateField('author',  this.state.author.trim(), validationErrors)
     if (Object.keys(validationErrors).length > 0) {
       this.setState({
         formErrors: validationErrors
@@ -88,9 +86,9 @@ class PostForm extends Component {
     // Create post
     let post = {
       id:       this.state.id,
-      title:    this.state.title,
-      body:     this.state.body,
-      author:   this.state.author,
+      title:    this.state.title.trim(),
+      body:     this.state.body.trim(),
+      author:   this.state.author.trim(),
       category: this.state.category,
     }
     post.timestamp = new Date().getTime()
