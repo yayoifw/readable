@@ -1,34 +1,49 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal'
+import { timestampToDate, renderVoteButtons } from "../utils/utils";
+import { voteComment, deleteComment } from '../actions/comment'
+import { connect } from 'react-redux'
 
 
 class CommentList extends Component {
-
+  state = {
+    commentEditModalOpen: false
+  }
   renderCommentEditModal() {
       return (
         <Modal
           className="modal"
-          isOpen={this.state.postEditModalOpen}
+          isOpen={this.state.commentEditModalOpen}
           onRequestClose={this.closeModal}
           contentLabel="Modal"
         >
           <div>
-            <input type='text' placeholder='Title' ref={(input) => this.titleInput = input}/>
-            <input type='text' placeholder='Body' ref={(input) => this.bodyInput = input}/>
+            <input type='text' placeholder='Title' value="Modal Title" ref={(input) => this.titleInput = input}/>
+            <input type='text' placeholder='Body' value="Modal Body" ref={(input) => this.bodyInput = input}/>
             <button>Save</button>
           </div>
         </Modal>
       )
   }
-  renderCommentAddButton() {
-    return (<button className="btn btn-info">Add Comment</button>)
+
+  onCommentDeleteClick(commentid) {
+    this.props.onDelete(commentid)
+  }
+
+  renderCommentControlButtons(comment, onEditCallback) {
+    return (
+      <div className="button-group">
+        <button onClick={() => {onEditCallback(comment)}} type="button" className="btn btn-info">Edit</button>
+        <button onClick={() => {this.onCommentDeleteClick(comment.id)}} type="button" className="btn btn-secondary post-btn">Delete</button>
+      </div>
+    )
   }
 
   render() {
-    const { comments } = this.props
+    const { comments, onVote, onEditComment } = this.props
 
     if ((!comments) || (comments.length === 0)) {
-      return this.renderCommentAddButton()
+      return null
     }
 
     return (
@@ -37,18 +52,28 @@ class CommentList extends Component {
         <ol className="comments">
           {comments.map((comment) => (
             <li key={comment.id}>
-              <p>{comment.body}</p>
-              <a>Vote Up</a><a>Vote Down</a>
-              <button>Edit</button>
-              <button>Delete</button>
+              <div className="post-meta">
+                <p>{timestampToDate(comment.timestamp)} by {comment.author} </p>
+                <p>Vote score: {comment.voteScore}
+                  {renderVoteButtons(comment.id, onVote)}
+                </p>
+              </div>
+              <div className="post-content">
+                {comment.body}
+              </div>
+              {this.renderCommentControlButtons(comment, onEditComment)}
             </li>
           ))}
         </ol>
-        {this.renderCommentAddButton()}
         {this.renderCommentEditModal()}
       </div>
     )
   }
 }
 
-export default CommentList
+const mapDispatchToProps = {
+  onVote: voteComment,
+  onDelete: deleteComment,
+}
+
+export default connect(null, mapDispatchToProps)(CommentList)

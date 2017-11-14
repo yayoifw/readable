@@ -112,7 +112,7 @@ class PostForm extends Component {
     const { title, body, author, category, formErrors } = this.state
     const { categories } = this.props
     return (
-      <form>
+      <form className="modal-form">
         <div className="form-group">
           <label htmlFor="postTitle">Title {(formErrors.title) && (<span className="form-error"> - {formErrors.title}</span>)}</label>
           <input type="text" className="form-control" id="postTitle"

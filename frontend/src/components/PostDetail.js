@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { votePost, deletePost, editPost, fetchPostAsync } from '../actions/post'
-import { fetchPostCommentsAsync } from "../actions/comment"
+import { fetchPostCommentsAsync, addComment, editComment } from "../actions/comment"
 import { timestampToDate, renderVoteButtons } from "../utils/utils";
 import { Link, withRouter } from 'react-router-dom'
+import Modal from 'react-modal'
+import CloseIcon from 'react-icons/lib/fa/close'
+import uuidv1 from 'uuid/v1'
 
 import CommentList from './CommentList'
 
 class PostDetail extends Component {
   state = {
-    postEditModalOpen: false
+    modalOpen: false,
+    commentId: null,
+    commentBody: '',
+    commentAuthor: '',
+    newComment: true
   }
 
   componentDidMount() {
@@ -23,22 +30,94 @@ class PostDetail extends Component {
     this.props.history.push("/")
   }
 
-  // renderPostEditModal() {
-  //     return (
-  //       <Modal
-  //         className="modal"
-  //         isOpen={this.state.postEditModalOpen}
-  //         onRequestClose={this.closeModal}
-  //         contentLabel="Modal"
-  //       >
-  //         <div>
-  //           <input type='text' placeholder='Title' ref={(input) => this.titleInput = input}/>
-  //           <input type='text' placeholder='Body' ref={(input) => this.bodyInput = input}/>
-  //           <button>Save</button>
-  //         </div>
-  //       </Modal>
-  //     )
-  // }
+  openModal = (comment = null) => {
+    console.log('openModal', comment)
+
+    this.setState({
+      modalOpen: true,
+      commentId: (comment) ? comment.id : uuidv1(),
+      commentBody: (comment) ? comment.body : '',
+      commentAuthor: (comment) ? comment.author : '',
+      newComment: (comment) ? false : true
+    })
+  }
+
+  closeModal = () => {
+    this.setState({
+      modalOpen: false,
+    })
+  }
+
+  updateCommentBody = (val) => {
+    this.setState({
+      commentBody: val
+    })
+  }
+  updateCommentAuthor = (val) => {
+    this.setState({
+      commentAuthor: val
+    })
+  }
+
+  onSaveComment = () => {
+    let comment = {
+      id: this.state.commentId,
+      body: this.state.commentBody.trim(),
+      author: this.state.commentAuthor.trim(),
+      parentId: this.props.post.id,
+    }
+    comment.timestamp = new Date().getTime()
+
+    if (this.state.isNew) {
+      this.props.addComment(comment)
+    } else {
+      this.props.editComment(comment)
+    }
+  }
+
+  onEditCommentClick = (comment) => {
+    this.openModal(comment)
+  }
+  onAddCommentClick() {
+    this.openModal()
+  }
+
+  renderModal() {
+    const modalTitle = this.state.newComment ? "Add Comment" : "Edit Comment"
+    return (
+      <Modal
+        isOpen={this.state.modalOpen}
+        onRequestClose={this.closeModal}
+        contentLabel="Modal"
+        className="modal-panel"
+        overlayClassName="modal-overlay"
+      >
+        <form>
+          <CloseIcon size={30} onClick={this.closeModal} className="modal-close-btn"/>
+          <h3>{modalTitle}</h3>
+          <div className="form-group">
+            <label htmlFor="postAuthor">Author</label>
+            <input type="text" className="form-control" id="commentAuthor"
+                   placeholder="Enter Author" value={this.state.commentAuthor}
+                   onChange={(e) => this.updateCommentAuthor(e.target.value)}
+                   disabled={!this.state.newComment}
+            />
+            <div className="form-group">
+              <label htmlFor="commentBody">Body</label>
+              <textarea type="text" className="form-control" id="commentBody"
+                        placeholder="Enter Title" value={this.state.commentBody}
+                        onChange={(e) => this.updateCommentBody(e.target.value)}
+              />
+            </div>
+            <button className="btn btn-info" onClick={(e) => {
+              this.onSaveComment(e)
+            }}>Save
+            </button>
+          </div>
+        </form>
+      </Modal>
+    )
+  }
 
   renderPostControlButtons() {
     const { post } = this.props
@@ -48,6 +127,10 @@ class PostDetail extends Component {
           <button onClick={() => {this.onPostDeleteClick(post.id)}} type="button" className="btn btn-secondary post-btn">Delete</button>
         </div>
       )
+  }
+
+  renderCommentAddButton() {
+    return (<button className="btn btn-info" onClick={(e) => {this.onAddCommentClick()}}>Add Comment</button>)
   }
 
   render () {
@@ -68,7 +151,9 @@ class PostDetail extends Component {
           {post.body}
         </div>
         {this.renderPostControlButtons()}
-        <CommentList comments={comments}/>
+        <CommentList comments={comments} onEditComment={this.onEditCommentClick}/>
+        {this.renderCommentAddButton()}
+        {this.renderModal()}
       </div>
     )
   }
@@ -87,6 +172,8 @@ const mapDispatchToProps = {
   onPostEdit: editPost,
   getPost: fetchPostAsync,
   getComments: fetchPostCommentsAsync,
+  addComment: addComment,
+  editComment: editComment
 }
 
 

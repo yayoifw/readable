@@ -11,6 +11,8 @@ import { fetchCategories } from "../actions/categories";
 import { fetchPostsAsync } from "../actions/post";
 import AddEditPostScreen from "../screens/AddEditPostScreen";
 
+import * as api from '../api'
+
 
 class App extends Component {
   componentWillMount() {
@@ -24,6 +26,8 @@ class App extends Component {
     // api.getPost("8xf0y6ziyjabvozdd253nd").then(data => { console.log(data) })
     // api.deletePost("8xf0y6ziyjabvozdd253nd").then(data => { console.log("deleted", data)})
     // console.log('my state', this.state)
+    api.addComment({ id: 123, timestamp: new Date().getTime(), body: 'test', author: 'test', parentId: 456 }).then(data =>
+    {console.log(data)})
     return (
       <BrowserRouter>
         <div>

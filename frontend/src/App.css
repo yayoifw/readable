@@ -93,3 +93,28 @@
   left: 0;
   width: 20px;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.modal-panel {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: unset;
+  padding: 20px;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12);
+  background-color: white;
+}
+
+.modal-close-btn {
+  position: absolute;
+  right: 20px;
+}
