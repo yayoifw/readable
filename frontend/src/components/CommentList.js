@@ -46,6 +46,7 @@ class CommentList extends Component {
       return null
     }
 
+    console.log('comments list', comments)
     return (
       <div>
         <p>{comments.length} comments</p>

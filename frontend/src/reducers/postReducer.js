@@ -11,7 +11,7 @@ function post(state = null, action) {
       return null
     case POST_VOTE:
       // Only update the matching post
-      if (state.id === action.data.id) {
+      if ((state) && (state.id === action.data.id)) {
         return action.data
       } else {
         return state

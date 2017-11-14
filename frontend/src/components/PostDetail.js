@@ -68,7 +68,7 @@ class PostDetail extends Component {
     }
     comment.timestamp = new Date().getTime()
 
-    if (this.state.isNew) {
+    if (this.state.newComment) {
       this.props.addComment(comment)
     } else {
       this.props.editComment(comment)
