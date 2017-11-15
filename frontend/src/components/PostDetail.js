@@ -52,6 +52,13 @@ class PostDetail extends Component {
       commentAuthor: val
     })
   }
+  modalInputValid() {
+    if ((this.state.commentAuthor.trim().length > 0) &&
+    (this.state.commentBody.trim().length > 0)) {
+      return true
+    }
+    return false
+  }
 
   onSaveComment = () => {
     let comment = {
@@ -74,6 +81,22 @@ class PostDetail extends Component {
   }
   onAddCommentClick() {
     this.openModal()
+  }
+
+  renderModalSaveButton() {
+    if (this.modalInputValid()) {
+      return (
+        <button className="btn btn-info" onClick={(e) => {
+          this.onSaveComment(e)
+        }}>Save</button>
+      )
+    } else {
+      return (
+        <button className="btn btn-info" onClick={(e) => {
+          this.onSaveComment(e)
+        }} disabled>Save</button>
+      )
+    }
   }
 
   renderModal() {
@@ -103,10 +126,7 @@ class PostDetail extends Component {
                         onChange={(e) => this.updateCommentBody(e.target.value)}
               />
             </div>
-            <button className="btn btn-info" onClick={(e) => {
-              this.onSaveComment(e)
-            }}>Save
-            </button>
+            {this.renderModalSaveButton()}
           </div>
         </form>
       </Modal>
