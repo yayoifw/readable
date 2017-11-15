@@ -51,7 +51,9 @@ class HomeScreen extends Component {
       <Page title="Readable - All Posts">
         <CategoryList/>
         <PostContainer>
-          <Link to="/add/post" className="btn btn-info">Add Post</Link>
+          <div className="post-add">
+            <Link to="/add/post" className="post-add-btn">Add Post</Link>
+          </div>
           <PostsVoteScoreSortControl callback={e => this.onVoteScoreSortClicked(e)} title="Sort by vote score" order={voteScoreOrder}/>
           <PostsVoteScoreSortControl callback={e => this.onTimestampSortClicked(e)} title="Sort by timestamp" order={timestampOrder}/>
           <PostList posts={posts}/>

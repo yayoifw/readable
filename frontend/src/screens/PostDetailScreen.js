@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Page from '../components/Page'
 import PostDetail from '../components/PostDetail'
+import CategoryList from '../components/CategoryList'
+import PostContainer from '../components/PostContainer'
 
 
 class PostDetailScreen extends Component {
@@ -13,29 +15,27 @@ class PostDetailScreen extends Component {
     getPost(postid)
   }
 
+  renderPostContent(post) {
+    if (!post) {
+      return (<h2 className="post-warning">Loading...</h2>)
+    } else if ((post.error) || (post.id === undefined)) {
+      return (<h2 className="post-warning">Post not found</h2>)
+    } else {
+      return (<PostDetail post={post}/>)
+    }
+  }
+
   render() {
     const {post} = this.props
-    if (!post) {
-      return (
-        <Page title="Post Detail">
-          <h2>Loading...</h2>
-        </Page>
-      )
-    }
-    else if ((post.error) || (post.id === undefined)){
-      return (
-        <Page title="Post Detail">
-          <h2>Post not found</h2>
-          <Link className="btn btn-info" to="/">Back to All Posts</Link>
-        </Page>
-      )
-    } else {
-      return (
-        <Page title="Post Detail">
-          <PostDetail post={post}/>
-        </Page>
-      )
-    }
+
+    return (
+      <Page title="Readable - Post Detail" showBackButton={true}>
+        <CategoryList/>
+        <PostContainer>
+          {this.renderPostContent(post)}
+        </PostContainer>
+      </Page>
+    )
   }
 }
 
