@@ -5,7 +5,7 @@ const Header = (props) => {
   const { title } = props
   return (
     <div className="header">
-      <h1 className="container">{title}</h1>
+      <h1 className="flex-container">{title}</h1>
     </div>
   )
 }

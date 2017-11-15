@@ -5,7 +5,7 @@ const Content = (props) => {
   const { children } = props
   return (
     <div className="content">
-      <div className="container">{children}</div>
+      <div className="flex-container">{children}</div>
     </div>
   )
 }

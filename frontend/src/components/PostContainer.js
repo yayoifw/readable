@@ -4,7 +4,7 @@ import React from 'react'
 const PostContainer = (props) => {
   const { children } = props
   return (
-    <div className="post-content">
+    <div className="flex-item-content">
       {children}
     </div>
   )

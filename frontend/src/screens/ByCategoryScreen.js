@@ -49,14 +49,14 @@ class ByCategoryScreen extends Component {
       timestampOrder = this.state.order
     }
     return (
-        <Page title={`Category: ${categoryName}`}>
+        <Page title={`Readable - category: ${categoryName}`}>
+          <CategoryList/>
           <PostContainer>
             <Link to="/add/post" className="btn btn-info">Add Post</Link>
             <PostsVoteScoreSortControl callback={e => this.onVoteScoreSortClicked(e)} title="Sort by vote score" order={voteScoreOrder}/>
             <PostsVoteScoreSortControl callback={e => this.onTimestampSortClicked(e)} title="Sort by timestamp" order={timestampOrder}/>
             <PostList posts={posts}/>
           </PostContainer>
-          <CategoryList/>
         </Page>
     )
   }
