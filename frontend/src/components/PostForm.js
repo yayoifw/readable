@@ -112,7 +112,7 @@ class PostForm extends Component {
     const { title, body, author, category, formErrors } = this.state
     const { categories } = this.props
     return (
-      <form className="modal-form">
+      <form className="post-form">
         <div className="form-group">
           <label htmlFor="postTitle">Title {(formErrors.title) && (<span className="form-error"> - {formErrors.title}</span>)}</label>
           <input type="text" className="form-control" id="postTitle"
@@ -139,7 +139,7 @@ class PostForm extends Component {
           <label htmlFor="postBody">Body {(formErrors.body) && (<span className="form-error"> - {formErrors.body}</span>)}</label>
           <textarea type="text" className="form-control" id="postBody" placeholder="Enter Body" value={body} onChange={(e) => this.updateBody(e.target.value)}/>
         </div>
-        <button type="submit" className="btn btn-info" onClick={(e) => {this.onSavePost(e)}}>Save</button>
+        <button type="submit" className="btn btn-info post-btn" onClick={(e) => {this.onSavePost(e)}}>Save</button>
         <button type="button" className="btn btn-secondary post-btn" onClick={(e) => {this.onCalcelPost(e)}}>Cancel</button>
       </form>
     )

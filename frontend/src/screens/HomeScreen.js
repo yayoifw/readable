@@ -6,7 +6,8 @@ import PostList from '../components/PostList'
 import CategoryList from '../components/CategoryList'
 import PostContainer from '../components/PostContainer'
 import {sortPostsByTimestamp, sortPostsByVoteScore} from "../utils/utils";
-import PostsVoteScoreSortControl from '../components/PostsSortControl'
+import PostsSortControl from '../components/PostsSortControl'
+import { renderAddPostButton } from "../utils/utils";
 
 const SORT_BY_TIMESTAMP = 'timestamp'
 const SORT_BY_VOTESCORE = 'voteScore'
@@ -51,11 +52,13 @@ class HomeScreen extends Component {
       <Page title="Readable - All Posts">
         <CategoryList/>
         <PostContainer>
-          <div className="post-add">
-            <Link to="/add/post" className="post-add-btn">Add Post</Link>
+          {renderAddPostButton()}
+          <div className="post-sort-control-group">
+            <PostsSortControl callback={e => this.onVoteScoreSortClicked(e)} title="Sort by vote score"
+                              order={voteScoreOrder}/>
+            <PostsSortControl callback={e => this.onTimestampSortClicked(e)} title="Sort by timestamp"
+                              order={timestampOrder}/>
           </div>
-          <PostsVoteScoreSortControl callback={e => this.onVoteScoreSortClicked(e)} title="Sort by vote score" order={voteScoreOrder}/>
-          <PostsVoteScoreSortControl callback={e => this.onTimestampSortClicked(e)} title="Sort by timestamp" order={timestampOrder}/>
           <PostList posts={posts}/>
         </PostContainer>
       </Page>

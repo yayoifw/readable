@@ -2,6 +2,7 @@ import React from 'react'
 import { VOTE_UP, VOTE_DOWN } from "../actions/index";
 import LikeHand from '../assets/like.svg'
 import DislikeHand from '../assets/dislike.svg'
+import { Link } from 'react-router-dom'
 
 export function sortPostsByVoteScore(posts, order) {
   if (order === 'asc')
@@ -35,4 +36,12 @@ export function renderVoteButtons(postid, onPostVoteCallback) {
           <img src={DislikeHand} className="icon-vote-down" alt="vote up post icon"/>
         </a>
         </span>)
+}
+
+export function renderAddPostButton() {
+  return (
+    <div className="post-add">
+      <Link to="/add/post" className="post-add-btn">Add Post</Link>
+    </div>
+  )
 }

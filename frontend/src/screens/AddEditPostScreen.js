@@ -3,6 +3,9 @@ import { fetchPostAsync } from '../actions/post'
 import { connect } from 'react-redux'
 import Page from '../components/Page'
 import PostForm from '../components/PostForm'
+import CategoryList from '../components/CategoryList'
+import PostContainer from '../components/PostContainer'
+
 
 
 class AddEditPostScreen extends Component {
@@ -25,9 +28,13 @@ class AddEditPostScreen extends Component {
 
   render() {
     const post = (this.state.isNew) ? null : this.props.post
+    const title = (this.state.isNew) ? 'Readable - New Post' : 'Readable - Edit Post'
     return (
-      <Page title="Post Form">
-        <PostForm post={post}/>
+      <Page title={title} showBackButton={true}>
+        <CategoryList/>
+        <PostContainer>
+          <PostForm post={post}/>
+        </PostContainer>
       </Page>
     )
   }

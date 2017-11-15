@@ -123,7 +123,7 @@ class PostDetail extends Component {
     const { post } = this.props
     return (
         <div className="button-group">
-          <Link to={`/edit/post/${post.id}`} className="btn btn-info">Edit</Link>
+          <Link to={`/edit/post/${post.id}`} className="btn btn-info post-btn">Edit</Link>
           <button onClick={() => {this.onPostDeleteClick(post.id)}} type="button" className="btn btn-secondary post-btn">Delete</button>
         </div>
       )
