@@ -25,9 +25,10 @@ class App extends Component {
     // api.getPosts().then(data => { console.log(data) })
     // api.getPost("8xf0y6ziyjabvozdd253nd").then(data => { console.log(data) })
     // api.deletePost("8xf0y6ziyjabvozdd253nd").then(data => { console.log("deleted", data)})
-    // console.log('my state', this.state)
-    api.addComment({ id: 123, timestamp: new Date().getTime(), body: 'test', author: 'test', parentId: 456 }).then(data =>
-    {console.log(data)})
+
+    api.getPostComments('abc').then(data => {
+      console.log('postComments', data)
+    })
     return (
       <BrowserRouter>
         <div>

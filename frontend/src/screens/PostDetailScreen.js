@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { fetchPostAsync } from '../actions/post'
-import { Link } from 'react-router-dom'
+import { fetchPostCommentsAsync } from "../actions/comment"
 import { connect } from 'react-redux'
 import Page from '../components/Page'
 import PostDetail from '../components/PostDetail'
@@ -10,8 +10,9 @@ import PostContainer from '../components/PostContainer'
 
 class PostDetailScreen extends Component {
   componentDidMount() {
-    const { getPost } = this.props
+    const { getPost, getComments } = this.props
     const postid = this.props.match.params.postid
+    getComments(postid)
     getPost(postid)
   }
 
@@ -47,6 +48,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getPost: fetchPostAsync,
+  getComments: fetchPostCommentsAsync
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetailScreen);

@@ -49,7 +49,7 @@ class CommentList extends Component {
     console.log('comments list', comments)
     return (
       <div>
-        <p>{comments.length} comments</p>
+        <p className="comment-total">{comments.length} comments</p>
         <ol className="comments">
           {comments.map((comment) => (
             <li key={comment.id}>

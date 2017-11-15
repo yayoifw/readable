@@ -19,12 +19,6 @@ class PostDetail extends Component {
     newComment: true
   }
 
-  componentDidMount() {
-    const { getComments } = this.props
-    const postid = this.props.post.id
-    getComments(postid)
-  }
-
   onPostDeleteClick(postid) {
     this.props.onPostDelete(postid)
     this.props.history.push("/")
@@ -170,8 +164,6 @@ const mapDispatchToProps = {
   onPostVote: votePost,
   onPostDelete: deletePost,
   onPostEdit: editPost,
-  getPost: fetchPostAsync,
-  getComments: fetchPostCommentsAsync,
   addComment: addComment,
   editComment: editComment
 }
