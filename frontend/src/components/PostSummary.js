@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { timestampToDate, renderVoteButtons } from "../utils/utils"
 import { votePost } from '../actions/post'
 import { connect } from 'react-redux'
+import CommentIcon from 'react-icons/lib/md/comment'
 
 const PostSummary = (props) => {
   const {post, onPostVote } = props
@@ -16,6 +17,7 @@ const PostSummary = (props) => {
           <p>Vote score: {post.voteScore}
             {renderVoteButtons(post.id, onPostVote)}
           </p>
+          <p><CommentIcon className="comment-icon" />1 Comments</p>
         </div>
       </div>
       <div className="post-content">

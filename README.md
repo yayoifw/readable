@@ -2,7 +2,7 @@
 
 Udacity React nanodegree second project Readable.
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
+This repository includes the code for the backend API Server along with the front-end code.
 
 ## How to Run
 
@@ -10,7 +10,7 @@ This repository includes the code for the backend API Server that you'll use to 
     - `cd api-server`
     - `npm install`
     - `node server`
-* In another terminal window, insatll frontend and start
+* In another terminal window, install frontend and start
     - `cd frontend`
     - `npm install`
     - `npm start`

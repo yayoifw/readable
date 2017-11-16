@@ -230,3 +230,8 @@ body {
 .comment-total {
   color: #666;
 }
+
+.comment-icon {
+  margin-right: 0.4rem;
+  font-size: 1.6rem;
+}
