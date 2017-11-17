@@ -13,7 +13,7 @@ export function fetchPostsAsync(category = null) {
       let comments = await api.getPostComments(aPost.id)
       return comments.length;
     }))
-    // Create post object with noOfComments field
+    // Create a post object with additional field - noOfComments field
     // aPost = { id, title, body, ... noOfComments }
     const newPosts = posts.map((aPost, index) => ({ ...aPost,
         noOfComments: noOfComments[index]}))
@@ -28,45 +28,16 @@ const fetchPostsAction = (data) => ({
 })
 
 export function fetchPostAsync(postId) {
-  return async dispatch => {
-    const post = await api.getPost(postId)
-    const comments = await api.getPostComments(postId)
-    const aPost = {
-      ...post,
-      noOfComments: comments.length
-    }
-    dispatch(fetchPostAction(aPost))
+  return dispatch => {
+    api.getPost(postId).then(data => {
+      dispatch(fetchPostAction(data))
+    })
   }
 }
 const fetchPostAction = (data) => ({
   type: POST_FETCH,
   data
 })
-
-// export function fetchPostsAsync(category = null) {
-//   return dispatch => {
-//     api.getPosts(category).then(data => {
-//       dispatch(fetchPostsAction(data))
-//     })
-//   }
-// }
-// const fetchPostsAction = (data) => ({
-//   type: POSTS_FETCH,
-//   data
-// })
-
-
-// export function fetchPostAsync(postId) {
-//   return dispatch => {
-//     api.getPost(postId).then(data => {
-//       dispatch(fetchPostAction(data))
-//     })
-//   }
-// }
-// const fetchPostAction = (data) => ({
-//   type: POST_FETCH,
-//   data
-// })
 
 export const votePost = (postId, voteType) => dispatch => {
   api.votePost(postId, voteType).then(data => {
@@ -107,3 +78,33 @@ const addPostAction = (data) => ({
   type: POST_ADD,
   data
 })
+
+
+// export function fetchPostAsync(postId) {
+//   return async dispatch => {
+//     const post = await api.getPost(postId)
+//     const comments = await api.getPostComments(postId)
+//     const aPost = {
+//       ...post,
+//       noOfComments: comments.length
+//     }
+//     dispatch(fetchPostAction(aPost))
+//   }
+// }
+// const fetchPostAction = (data) => ({
+//   type: POST_FETCH,
+//   data
+// })
+
+// export function fetchPostsAsync(category = null) {
+//   return dispatch => {
+//     api.getPosts(category).then(data => {
+//       dispatch(fetchPostsAction(data))
+//     })
+//   }
+// }
+// const fetchPostsAction = (data) => ({
+//   type: POSTS_FETCH,
+//   data
+// })
+

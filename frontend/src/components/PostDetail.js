@@ -7,7 +7,6 @@ import { Link, withRouter } from 'react-router-dom'
 import Modal from 'react-modal'
 import CloseIcon from 'react-icons/lib/fa/close'
 import uuidv1 from 'uuid/v1'
-import CommentIcon from 'react-icons/lib/md/comment'
 
 
 import CommentList from './CommentList'
@@ -167,7 +166,6 @@ class PostDetail extends Component {
           {post.body}
         </div>
         {this.renderPostControlButtons()}
-        <p className="post-detail-comment-title"><CommentIcon className="comment-icon" />{post.noOfComments} Comments</p>
         <CommentList comments={comments} onEditComment={this.onEditCommentClick}/>
         {this.renderCommentAddButton()}
         {this.renderModal()}

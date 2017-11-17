@@ -15,13 +15,13 @@ function posts(state = [], action) {
       return action.data
     case POST_VOTE:
       // action.data is a post {}
-      return state.map(aPost => ((aPost.id === action.data.id) ? action.data : aPost))
+      return state.map(aPost => ((aPost.id === action.data.id) ? { ...action.data, noOfComments: aPost.noOfComments } : aPost))
     case POST_DELETE:
       // action.data is a post {} with deleted=true
       return state.filter(aPost => (aPost.id !== action.data.id))
     case POST_EDIT:
       // action.data is a post {}
-      return state.map(aPost => ((aPost.id === action.data.id) ? action.data : aPost))
+      return state.map(aPost => ((aPost.id === action.data.id) ? { ...action.data, noOfComments: aPost.noOfComments } : aPost))
     case POST_ADD:
       // do not state.push(action.data), need to return a new array
       const newPostWithNoOfComments = { ...action.data, noOfComments: 0 }
@@ -32,7 +32,7 @@ function posts(state = [], action) {
       const parentPostId = action.data.parentId
       return state.map(aPost => {
         if (aPost.id === parentPostId) {
-          return {...aPost, noOfComments: aPost.noOfComments++}
+          return {...aPost, noOfComments: aPost.noOfComments+1}
         } else {
           return aPost
         }
@@ -44,7 +44,7 @@ function posts(state = [], action) {
       const parentPostId = action.data.parentId
       return state.map(aPost => {
         if (aPost.id === parentPostId) {
-          return {...aPost, noOfComments: aPost.noOfComments--}
+          return {...aPost, noOfComments: aPost.noOfComments-1}
         } else {
           return aPost
         }

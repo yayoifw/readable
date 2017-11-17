@@ -3,6 +3,8 @@ import Modal from 'react-modal'
 import { timestampToDate, renderVoteButtons } from "../utils/utils";
 import { voteComment, deleteComment } from '../actions/comment'
 import { connect } from 'react-redux'
+import CommentIcon from 'react-icons/lib/md/comment'
+
 
 
 
@@ -44,12 +46,16 @@ class CommentList extends Component {
     const { comments, onVote, onEditComment } = this.props
 
     if ((!comments) || (comments.length === 0)) {
-      return null
+      return (
+        <div>
+          <p className="post-detail-comment-title"><CommentIcon className="comment-icon" />0 Comments</p>
+        </div>
+      )
     }
 
-    console.log('comments list', comments)
     return (
       <div>
+        <p className="post-detail-comment-title"><CommentIcon className="comment-icon" />{comments.length} Comments</p>
         <ol className="comments">
           {comments.map((comment) => (
             <li key={comment.id}>
