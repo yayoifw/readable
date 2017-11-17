@@ -5,6 +5,7 @@ import { voteComment, deleteComment } from '../actions/comment'
 import { connect } from 'react-redux'
 
 
+
 class CommentList extends Component {
   state = {
     commentEditModalOpen: false
@@ -49,7 +50,6 @@ class CommentList extends Component {
     console.log('comments list', comments)
     return (
       <div>
-        <p className="comment-total">{comments.length} comments</p>
         <ol className="comments">
           {comments.map((comment) => (
             <li key={comment.id}>

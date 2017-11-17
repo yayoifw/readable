@@ -17,7 +17,7 @@ const PostSummary = (props) => {
           <p>Vote score: {post.voteScore}
             {renderVoteButtons(post.id, onPostVote)}
           </p>
-          <p><CommentIcon className="comment-icon" />1 Comments</p>
+          <p><CommentIcon className="comment-icon" />{post.noOfComments} Comments</p>
         </div>
       </div>
       <div className="post-content">

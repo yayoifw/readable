@@ -11,13 +11,11 @@ import { fetchCategories } from "../actions/categories";
 import { fetchPostsAsync } from "../actions/post";
 import AddEditPostScreen from "../screens/AddEditPostScreen";
 
-import * as api from '../api'
-
 
 class App extends Component {
   componentWillMount() {
-    this.props.getCategories();
-    this.props.getPosts();
+    this.props.getCategories()
+    this.props.getPosts()
   }
 
   render() {
@@ -25,10 +23,6 @@ class App extends Component {
     // api.getPosts().then(data => { console.log(data) })
     // api.getPost("8xf0y6ziyjabvozdd253nd").then(data => { console.log(data) })
     // api.deletePost("8xf0y6ziyjabvozdd253nd").then(data => { console.log("deleted", data)})
-
-    api.getPostComments('abc').then(data => {
-      console.log('postComments', data)
-    })
     return (
       <BrowserRouter>
         <div>
