@@ -38,6 +38,18 @@ export function renderVoteButtons(postid, onPostVoteCallback) {
         </span>)
 }
 
+export function renderPostControlButtons(post, onPostDeleteCallback) {
+  return (
+    <div className="button-group">
+      <Link to={`/edit/post/${post.id}`} className="btn btn-info post-btn">Edit</Link>
+      <button onClick={(e) => {
+        onPostDeleteCallback(post.id)
+      }} type="button" className="btn btn-secondary post-btn">Delete
+      </button>
+    </div>
+  )
+}
+
 export function renderAddPostButton() {
   return (
     <div className="post-add">

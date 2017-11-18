@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import '../bootstrap.css'
 import '../App.css';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import HomeScreen from '../screens/HomeScreen'
 import ByCategoryScreen from '../screens/ByCategoryScreen'
 import PostDetailScreen from '../screens/PostDetailScreen'
@@ -34,11 +34,13 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path="/" component={HomeScreen} loading={this.state.loading} />
-          <Route exact path="/:category" component={ByCategoryScreen} loading={this.state.loading} />
-          <Route exact path="/:category/:postid" component={PostDetailScreen} />
-          <Route exact path="/add/post" component={AddEditPostScreen} />
-          <Route exact path="/edit/post/:postid" component={AddEditPostScreen} />
+          <Switch>
+            <Route exact path="/" component={HomeScreen} loading={this.state.loading}/>
+            <Route exact path="/add/post" component={AddEditPostScreen}/>
+            <Route exact path="/edit/post/:postid" component={AddEditPostScreen}/>
+            <Route exact path="/:category" component={ByCategoryScreen} loading={this.state.loading}/>
+            <Route exact path="/:category/:postid" component={PostDetailScreen}/>
+          </Switch>
         </div>
       </BrowserRouter>)
   }

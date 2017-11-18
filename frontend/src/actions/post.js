@@ -52,8 +52,13 @@ const fetchPostsAction = (data) => ({
 
 export function fetchPostAsync(postId) {
   return dispatch => {
-    api.getPost(postId).then(data => {
-      dispatch(fetchPostAction(data))
+
+    return new Promise(function (resolve, reject) {
+      api.getPost(postId).then(data => {
+        dispatch(fetchPostAction(data))
+        resolve(data)
+      })
+
     })
   }
 }
@@ -61,6 +66,18 @@ const fetchPostAction = (data) => ({
   type: POST_FETCH,
   data
 })
+
+// export function fetchPostAsync(postId) {
+//   return dispatch => {
+//     api.getPost(postId).then(data => {
+//       dispatch(fetchPostAction(data))
+//     })
+//   }
+// }
+// const fetchPostAction = (data) => ({
+//   type: POST_FETCH,
+//   data
+// })
 
 export const votePost = (postId, voteType) => dispatch => {
   api.votePost(postId, voteType).then(data => {
