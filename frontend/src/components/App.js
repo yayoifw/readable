@@ -26,11 +26,10 @@ class App extends Component {
   }
 
   render() {
-    //api.getCatetories().then(data => { console.log(data) })
-    // api.getPosts().then(data => { console.log(data) })
-    // api.getPost("8xf0y6ziyjabvozdd253nd").then(data => { console.log(data) })
-    // api.deletePost("8xf0y6ziyjabvozdd253nd").then(data => { console.log("deleted", data)})
-
+    /*
+     * <Switch>...</Switch> is used to group <Route> components.
+     * <Switch> will pick the first match in the child elements.
+     */
     return (
       <BrowserRouter>
         <div>
