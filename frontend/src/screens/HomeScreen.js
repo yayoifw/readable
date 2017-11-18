@@ -6,7 +6,7 @@ import CategoryList from '../components/CategoryList'
 import PostContainer from '../components/PostContainer'
 import {sortPostsByTimestamp, sortPostsByVoteScore} from "../utils/utils";
 import PostsSortControl from '../components/PostsSortControl'
-import { renderAddPostButton } from "../utils/utils";
+import { renderAddPostButton, renderLoader } from "../utils/utils";
 
 const SORT_BY_TIMESTAMP = 'timestamp'
 const SORT_BY_VOTESCORE = 'voteScore'
@@ -35,7 +35,20 @@ class HomeScreen extends Component {
     })
   }
 
+  renderLoader() {
+    return (
+      <Page title="Readable - All Posts">
+        {renderLoader()}
+      </Page>
+    )
+  }
+
   render() {
+    const loading = this.props.loading
+    if (loading) {
+      return renderLoader()
+    }
+
     let posts = this.props.posts
     let voteScoreOrder = 'desc'
     let timestampOrder = 'desc'

@@ -11,7 +11,7 @@ const CategoryList = (props) => {
         {categories.map((aCat) => {
           return (
             <li key={aCat.path}>
-              <Link to={`/category/${aCat.path}`}>{aCat.name}</Link>
+              <Link to={`/${aCat.path}`}>{aCat.name}</Link>
             </li>
           )
         })}

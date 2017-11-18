@@ -10,7 +10,7 @@ const PostSummary = (props) => {
   return (
     <div className="post-detail">
       <div className="post-header">
-        <Link to={`/post/${post.id}`}><h2 className="post-title">{post.title}</h2></Link>
+        <Link to={`/${post.category}/${post.id}`}><h2 className="post-title">{post.title}</h2></Link>
         <div className="post-meta">
           <p>{timestampToDate(post.timestamp)} by {post.author} </p>
           <p>Category: {post.category}</p>

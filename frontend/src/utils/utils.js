@@ -45,3 +45,7 @@ export function renderAddPostButton() {
     </div>
   )
 }
+
+export function renderLoader() {
+  return (<div className="loader"></div>);
+}

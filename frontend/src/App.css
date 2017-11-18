@@ -245,3 +245,23 @@ body {
   margin-top: 1rem;
   margin-left: 30px;
 }
+
+.loader {
+  /* background-color */
+  border: 8px solid #4b5b66;
+  border-radius: 50%;
+  /* rotating color */
+  border-top: 8px solid rgb(3, 169, 244);
+  width: 90px;
+  height: 90px;
+  animation: spin 1.5s linear infinite;
+  -webkit-animation: spin 1.5s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { -webkit-transform: rotate(360deg);}
+}
+@-webkit-keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { -webkit-transform: rotate(360deg);}
+}
